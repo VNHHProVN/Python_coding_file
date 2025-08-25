@@ -8,7 +8,7 @@ import random
 # Chúng ta sẽ xài dictionary để có thể vừa nhập từ khóa vừa gắn luôn giá trị mà ta sẽ gán trực tiếp vào từ khóa phía trước
 rock_paper_scissors_emoji = {'rock': '👊', 'paper': '🖐', 'scissors': '✌'} 
 choice = tuple(rock_paper_scissors_emoji.keys()) 
-computer_choice = random.choice(choice)
+
 
 def rock_paper_scissors_input(): 
     while True:
@@ -42,9 +42,9 @@ def checking_the_result_game(player_choice, computer_choice):
 def ask_player_wanna_continue_play(): 
     while True: 
         game_continue = input("Wanna continue? (enter 'yes', 'no' to answer): ") 
-        if game_continue == 'no': 
-            break 
-        
+        if game_continue in ('yes', 'no'): 
+            return game_continue
+            
         else: 
             print(f"You can't type '{game_continue}' to restart or stop the game so you need to type 'yes' for continue playing and 'no' for stop playing.")
             continue
@@ -52,21 +52,12 @@ def ask_player_wanna_continue_play():
 def play_game():
     while True: 
         player_choice = rock_paper_scissors_input() 
-        
+        computer_choice = random.choice(choice)
         
         display_choice(player_choice, computer_choice) 
         checking_the_result_game(player_choice,  computer_choice) 
-        
-        continue_play = True 
-        while continue_play: 
-            game_continue = input("Wanna continue? (enter 'yes', 'no' to answer): ") 
-            if game_continue == 'no': 
-                break 
-            elif game_continue == 'yes': 
-                continue_play = False
-            else: 
-                print(f"You can't type '{game_continue}' to restart or stop the game so you need to type 'yes' for continue playing and 'no' for stop playing.")
-                continue
+        if ask_player_wanna_continue_play() == 'no': 
+            break
         
 play_game()
 
