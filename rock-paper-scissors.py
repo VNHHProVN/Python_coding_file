@@ -55,7 +55,7 @@ def play_game():
         computer_choice = random.choice(choice)
         
         display_choice(player_choice, computer_choice) 
-        checking_the_result_game(player_choice,  computer_choice) 
+        checking_the_result_game(player_choice, computer_choice) 
         if ask_player_wanna_continue_play() == 'no': 
             break
         
